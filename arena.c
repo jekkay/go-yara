@@ -449,7 +449,7 @@ int yr_arena_coalesce(
   while (page != NULL)
   {
     page->new_address = big_page->address + big_page->used;
-    memcpy(page->new_address, page->address, page->used);
+    memmove(page->new_address, page->address, page->used);
 
     reloc = page->reloc_list_head;
 
@@ -733,7 +733,7 @@ int yr_arena_write_data(
     arena->current_page->used += size;
   }
 
-  memcpy(output, data, size);
+  memmove(output, data, size);
 
   if (written_data != NULL)
     *written_data = output;
@@ -852,7 +852,7 @@ int yr_arena_duplicate(
   new_page = new_arena->current_page;
   new_page->used = page->used;
 
-  memcpy(new_page->address, page->address, page->size);
+  memmove(new_page->address, page->address, page->size);
 
   reloc = page->reloc_list_head;
 

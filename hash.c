@@ -310,7 +310,7 @@ YR_API int yr_hash_table_add_raw_key(
   entry->key_length = key_length;
   entry->value = value;
 
-  memcpy(entry->key, key, key_length);
+  memmove(entry->key, key, key_length);
 
   bucket_index = yr_hash(0, key, key_length);
 

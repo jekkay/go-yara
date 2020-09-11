@@ -580,7 +580,7 @@ static int _yr_atoms_choose(
     if (item == NULL)
       return ERROR_INSUFFICIENT_MEMORY;
 
-    memcpy(&item->atom, &node->atom, sizeof(YR_ATOM));
+    memmove(&item->atom, &node->atom, sizeof(YR_ATOM));
 
     shift = _yr_atoms_trim(&item->atom);
 
@@ -705,7 +705,7 @@ static uint8_t* _yr_atoms_case_combinations(
     *output_buffer = atom_length;
     output_buffer++;
 
-    memcpy(output_buffer, atom, atom_length);
+    memmove(output_buffer, atom, atom_length);
 
     new_atom = output_buffer;
     output_buffer += atom_length;
@@ -1022,16 +1022,16 @@ static int _yr_atoms_extract_from_re(
 
         if (quality > best_quality)
         {
-          memcpy(&leaf->atom, &atom, sizeof(atom));
-          memcpy(
+          memmove(&leaf->atom, &atom, sizeof(atom));
+          memmove(
               &leaf->re_nodes,
               &recent_re_nodes[shift],
               sizeof(recent_re_nodes) - shift * sizeof(recent_re_nodes[0]));
         }
         else
         {
-          memcpy(&leaf->atom, &best_atom, sizeof(best_atom));
-          memcpy(
+          memmove(&leaf->atom, &best_atom, sizeof(best_atom));
+          memmove(
               &leaf->re_nodes,
               &best_atom_re_nodes,
               sizeof(best_atom_re_nodes));
@@ -1261,7 +1261,7 @@ static YR_ATOM_LIST_ITEM* _yr_atoms_clone_list_item(
   if (clone == NULL)
     return NULL;
 
-  memcpy(clone, item, sizeof(YR_ATOM_LIST_ITEM));
+  memmove(clone, item, sizeof(YR_ATOM_LIST_ITEM));
 
   return clone;
 }
@@ -1517,13 +1517,13 @@ int yr_atoms_extract_from_string(
        i++)
   {
     atom.length = YR_MAX_ATOM_LENGTH;
-    memcpy(atom.bytes, string + i - YR_MAX_ATOM_LENGTH + 1, atom.length);
+    memmove(atom.bytes, string + i - YR_MAX_ATOM_LENGTH + 1, atom.length);
 
     quality = config->get_atom_quality(config, &atom);
 
     if (quality > max_quality)
     {
-      memcpy(&item->atom, &atom, sizeof(atom));
+      memmove(&item->atom, &atom, sizeof(atom));
       item->backtrack = i - YR_MAX_ATOM_LENGTH + 1;
       max_quality = quality;
     }

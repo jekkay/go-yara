@@ -209,7 +209,7 @@ static void pe_parse_rich_signature(
       if (!raw_data)
         return;
 
-      memcpy(raw_data, rich_signature, rich_len);
+      memmove(raw_data, rich_signature, rich_len);
 
       set_integer(
           base_address + 0x80, pe->object, "rich_signature.offset");
@@ -236,7 +236,7 @@ static void pe_parse_rich_signature(
     }
 
     // Copy the entire block here to be XORed.
-    memcpy(clear_data, raw_data, rich_len);
+    memmove(clear_data, raw_data, rich_len);
 
     for (rich_ptr = (DWORD*) clear_data;
          rich_ptr < (DWORD*) (clear_data + rich_len);

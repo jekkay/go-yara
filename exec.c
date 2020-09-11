@@ -519,7 +519,7 @@ int yr_execute_code(
         break;
 
       case OP_INIT_RULE:
-        memcpy(&init_rule_args, ip, sizeof(init_rule_args));
+        memmove(&init_rule_args, ip, sizeof(init_rule_args));
         #ifdef PROFILING_ENABLED
         current_rule = init_rule_args.rule;
         #endif

@@ -1363,7 +1363,7 @@ YY_RULE_SETUP
 
   // End of character class.
   yylval->re_class = (RE_CLASS*) yr_malloc(sizeof(RE_CLASS));
-  memcpy(yylval->re_class->bitmap, LEX_ENV->re_class.bitmap, 32);
+  memmove(yylval->re_class->bitmap, LEX_ENV->re_class.bitmap, 32);
 
   yylval->re_class->negated = LEX_ENV->re_class.negated;
 

@@ -89,7 +89,7 @@ char* yr_strdup(const char *str)
   if (dup == NULL)
     return NULL;
 
-  memcpy(dup, str, len);
+  memmove(dup, str, len);
   dup[len] = '\0';
 
   return (char*) dup;
@@ -104,7 +104,7 @@ char* yr_strndup(const char *str, size_t n)
   if (dup == NULL)
     return NULL;
 
-  memcpy(dup, str, len);
+  memmove(dup, str, len);
   dup[len] = '\0';
 
   return (char *) dup;

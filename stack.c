@@ -107,7 +107,7 @@ int yr_stack_push(
     stack->capacity *= 2;
   }
 
-  memcpy(
+  memmove(
       (uint8_t*) stack->items + stack->top * stack->item_size,
       item,
       stack->item_size);
@@ -136,7 +136,7 @@ int yr_stack_pop(
 
   stack->top--;
 
-  memcpy(
+  memmove(
       item,
       (uint8_t*) stack->items + stack->top * stack->item_size,
       stack->item_size);

@@ -1091,7 +1091,7 @@ int yr_object_set_string(
     string_obj->value.ss->length = (uint32_t) len;
     string_obj->value.ss->flags = 0;
 
-    memcpy(string_obj->value.ss->c_string, value, len);
+    memmove(string_obj->value.ss->c_string, value, len);
     string_obj->value.ss->c_string[len] = '\0';
   }
   else

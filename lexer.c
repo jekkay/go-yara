@@ -2088,7 +2088,7 @@ YY_RULE_SETUP
   alloc_sized_string(s, yyextra->lex_buf_len);
 
   *yyextra->lex_buf_ptr = '\0';
-  memcpy(s->c_string, yyextra->lex_buf, yyextra->lex_buf_len + 1);
+  memmove(s->c_string, yyextra->lex_buf, yyextra->lex_buf_len + 1);
   yylval->sized_string = s;
 
   BEGIN(INITIAL);
